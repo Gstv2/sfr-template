@@ -1,0 +1,12 @@
+@startuml
+class Mesa {
+  - id_mesa: number
+  - aluno: Aluno | undefined
+  - ocupado: boolean
+
+  + addAluno(aluno: Aluno): void
+  + delAluno(): Aluno | undefined
+  + verificarOcupado(): boolean
+  + alterarStatus(): void
+}
+@enduml
