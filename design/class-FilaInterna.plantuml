@@ -1,0 +1,20 @@
+@startuml
+    class Aluno {
+        + id_Aluno: number
+        + nome: string
+        + constructor(id_Aluno: number, nome: string)
+    }
+
+    class FilaInterna {
+        + id_FilaInterna: number
+        + aluno: Aluno[]
+        + QuantMax: number
+        + constructor(id_FilaInterna: number, QuantMax: number)
+        + AddAluno(aluno: Aluno): void
+        + DelAluno(): Aluno | undefined
+        + verificarQuantAluno(): number
+        + VerificarSeTemAlguem(): boolean
+    }
+
+    FilaInterna "1" *-- "0..*" Aluno : contém
+@enduml
