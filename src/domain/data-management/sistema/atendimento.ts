@@ -38,7 +38,11 @@ export class Atendimento{
     }
 
     public verificarAtendimento(){
-        
+        if(this.temAlguem()){
+            console.log("Atendimento está ocupado");
+        }else{
+            console.log("Atendimento está livre");
+        }
     }
 
     private travarAtendimento(): boolean{
