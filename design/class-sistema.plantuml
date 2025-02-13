@@ -1,0 +1,23 @@
+@startuml SistemaDiagrama
+class Catraca {
+    - id_catraca: number
+    - aluno: Aluno | undefined
+    - ocupada: boolean
+    - travada: boolean
+
+    + Catraca(id: number)
+    + AddAluno(aluno: Aluno): void
+    + DelAluno(): Aluno | undefined
+    + verificarOcupado(): boolean
+    + TravarCatraca(): void
+    + LiberarCatraca(): void
+    + verificarTravada(): boolean
+}
+
+class Aluno {
+    + id: number
+    + nome: string
+}
+
+Catraca --> Aluno : "Possui um"
+@enduml
