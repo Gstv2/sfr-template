@@ -1,20 +1,19 @@
 @startuml
+package Domain.DataManegement{
     class Aluno {
-        + id_Aluno: number
-        + nome: string
-        + constructor(id_Aluno: number, nome: string)
+        + calcularTempoMedio():number
+        + criar_Aluno(): Aluno
     }
 
     class FilaInterna {
-        + id_FilaInterna: number
         + aluno: Aluno[]
         + QuantMax: number
         + constructor(id_FilaInterna: number, QuantMax: number)
-        + AddAluno(aluno: Aluno): void
-        + DelAluno(): Aluno | undefined
+        + adicionarAluno(aluno: Aluno): void
+        + removerAluno(): Aluno
         + verificarQuantAluno(): number
         + VerificarSeTemAlguem(): boolean
     }
-
+}
     FilaInterna "1" *-- "0..*" Aluno : contém
 @enduml

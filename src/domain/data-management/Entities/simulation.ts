@@ -47,5 +47,7 @@ export class Simulation {
     this.status = "not_started";
     this.parameters = parameters;
   }
+
+  
 }
 
