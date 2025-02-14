@@ -1,0 +1,22 @@
+@startuml SimulationRepositoryDiagrama
+
+interface SimulationRepositoryI {
+  +save(simulation: Simulation): Promise<void>
+  +getById(id: string): Promise<Simulation | null>
+  +getAll(): Promise<Simulation[]>
+  +delete(id: string): Promise<void>
+}
+
+class SimulationRepository {
+  -storageKey: string
+  +save(simulation: Simulation): Promise<void>
+  +getById(id: string): Promise<Simulation | null>
+  +getAll(): Promise<Simulation[]>
+  +delete(id: string): Promise<void>
+  -getStoredSimulations(): Simulation[]
+  -saveToStorage(simulations: Simulation[]): void
+}
+
+SimulationRepository ..|> SimulationRepositoryI
+
+@enduml
