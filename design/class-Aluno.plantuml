@@ -1,0 +1,26 @@
+@startuml FilaInterna/Aluno
+    package Domain.DataManegement{
+        class Aluno {
+            - InstanteFilaExterna: number
+            - InstanteCatraca: number
+            - tempoDigitarMatricula: number
+            - InstanteFilainterna: number
+            - InstanteAtendimento: number
+            - tempoAtendimento: number
+            - InstanteNaMesa: number
+            - tempoComer: number
+
+            + setInstanteFilaExterna(): void
+            + setInstanteCatraca(): void
+            + setInstanteFilainterna(): void
+            + setInstanteAtendimento(): void
+            + setInstanteNaMesa(): void
+            
+            + gettempoDigitarMatricula(): number
+            + gettempoAtendimento(): number
+            + gettempoComer(): number
+            
+            + calcularTempoMedio(): number
+        }
+    }
+@endumlS
