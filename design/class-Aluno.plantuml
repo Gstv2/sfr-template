@@ -23,4 +23,115 @@
             + calcularTempoMedio(): number
         }
     }
-@endumlS
+
+    package Domain.DataManegement.Entities{
+        class Simulador {
+            - refeitorio: refeitorio
+            - maquina: MaquinaEventos
+            - simulacao: Simulacao
+            - confirgurarChegadasAlunos:void
+            + executarSimulacao:void
+            + getSimulacao: Simulacao
+        }
+
+        class SimulationParameters {
+            + LFI: number
+            + LM: number
+            + TMDM: number
+            + TMPSC: number
+            + TMPNM: number
+            + QAL: number
+            + QACR: number
+            + IAR: number
+            + distribution: "normal" | "log" | "linear"
+        }
+
+        class SimulationResults {
+            + intertalQueueSizeOverTime: MetricOverTime[];
+            + externalQueueSizeOverTime: MetricOverTime[];
+            + tableOccupancyOverTime: MetricOverTime[];
+            + averageWaitTime: number;
+            + avgExternalQueue: number;
+            + avgWaitTime: number;
+            + maxTableOccupancy: number;
+            + simulationDuration: number;
+        }
+
+        class MetricOverTime {
+            + timestamp: number;
+            +value: number;
+        }
+
+        class Simulation {
+            id: string;
+            name: string;
+            status: "not_started" | "completed";
+            completedAt?: string;
+            parameters: SimulationParameters;
+            results?: SimulationResults;
+        }
+    }
+
+        package Domain.SimulationEngine{
+
+        ' Classe da Maquina de Eventos
+            class MaquinaEventos {
+                - eventos: Eventos[] = []
+                - instanteDeSimulacao = 0
+                + processarEventos()
+                + adicionarEvento(novoEvento:Evento)
+                -  atualizarInstanteDeSimulacao(novoInstanteDeSimulacao:number)
+            }
+
+        ' Classe abstrata de Eventos
+            abstract class Eventos {
+                # timestamp: number
+                # refeitorio: Refetorio
+                # maquinaEventos: MaquinaEventos
+
+                + getTimestamp():number
+                + processarEvento():void
+            }
+
+
+        ' Eventos
+            class ChegadaAlunoFilaExterna {
+                - aluno: Aluno
+                + processarEvento():void
+            }
+            class ChegadaAlunoFilaCatraca {
+                - aluno: Aluno
+                + processarEvento():void
+            }
+            class ChegadaAlunoFilaInterna {
+                - aluno: Aluno
+                + processarEvento():void
+            }
+            class ChegadaAlunoAtendimento {
+                - aluno: Aluno
+                + processarEvento():void
+            }
+            class ChegadaAlunoMesa {
+                - aluno: Aluno
+                + processarEvento():void
+            }
+        }
+
+        ' relacionamentos
+        Simulador "1" o-- "1" Simulation
+        Simulation "1" *-- "1" SimulationParameters
+        Simulation "1" *-- "1" SimulationResults
+        SimulationResults "1" *-- "n" MetricOverTime
+
+
+        MaquinaEventos "1" o-- "n" Eventos
+        MaquinaEventos "1" --* "1" Eventos
+
+        Eventos ^-- ChegadaAlunoFilaExterna
+        Eventos ^-- ChegadaAlunoFilaCatraca
+        Eventos ^-- ChegadaAlunoFilaInterna
+        Eventos ^-- ChegadaAlunoAtendimento
+        Eventos ^-- ChegadaAlunoMesa
+
+
+@enduml
