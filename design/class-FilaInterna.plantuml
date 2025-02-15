@@ -1,19 +1,38 @@
-@startuml
-package Domain.DataManegement{
-    class Aluno {
-        + calcularTempoMedio():number
-        + criar_Aluno(): Aluno
-    }
+@startuml FilaInterna/Aluno
+    package Domain.DataManegement{
+        class Aluno {
+            - InstanteFilaExterna: number
+            - InstanteCatraca: number
+            - tempoDigitarMatricula: number
+            - InstanteFilainterna: number
+            - InstanteAtendimento: number
+            - tempoAtendimento: number
+            - InstanteNaMesa: number
+            - tempoComer: number
 
-    class FilaInterna {
-        + aluno: Aluno[]
-        + QuantMax: number
-        + constructor(id_FilaInterna: number, QuantMax: number)
-        + adicionarAluno(aluno: Aluno): void
-        + removerAluno(): Aluno
-        + verificarQuantAluno(): number
-        + VerificarSeTemAlguem(): boolean
+            + setInstanteFilaExterna(): void
+            + setInstanteCatraca(): void
+            + setInstanteFilainterna(): void
+            + setInstanteAtendimento(): void
+            + setInstanteNaMesa(): void
+            
+            + gettempoDigitarMatricula(): number
+            + gettempoAtendimento(): number
+            + gettempoComer(): number
+            
+            + calcularTempoMedio(): number
+        }
+
+        class FilaInterna {
+            - aluno: Aluno[]
+            - QuantMax: number
+            + adicionarAluno(aluno: Aluno): void
+            + removerAluno(): Aluno
+            + verificarOcupação(): boolean
+            + VerificarSeTemAlguem(): boolean
+            + tamanhoFila(): Aluno[]
+        }
+
+        FilaInterna "1" *-- "0..*" Aluno : contém
     }
-}
-    FilaInterna "1" *-- "0..*" Aluno : contém
 @enduml

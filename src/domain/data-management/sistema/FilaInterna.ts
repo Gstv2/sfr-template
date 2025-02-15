@@ -1,8 +1,8 @@
 import { Aluno } from "./aluno";
 
 export class FilaInterna{
-    QuantAluno:Aluno[] = [];
-    maxOcupação:number;
+    private QuantAluno:Aluno[] = [];
+    private maxOcupação:number;
 
     constructor(maxOcupação:number){
         this.maxOcupação = maxOcupação;
@@ -33,12 +33,16 @@ export class FilaInterna{
         }
     }
 
-    public verificarSeTemAlguem(){
+    public verificarSeTemAlguem():boolean{
         if (this.QuantAluno.length == 0){
             return true;
         }else{
             return false;
         }
+    }
+
+    public tamanhoFila():Aluno[]{
+        return this.QuantAluno;
     }
 }
 
