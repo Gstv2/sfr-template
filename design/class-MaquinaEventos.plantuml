@@ -1,0 +1,11 @@
+@startuml FilaInterna/Aluno
+
+    class MaquinaEventos{
+        - eventos: Eventos[] = []
+        - instanteDeSimulacao = 0
+        + processarEventos()
+        + adicionarEvento(novoEvento:Evento)
+        # atualizarInstanteDeSimulacao(novoInstanteDeSimulacao:number)
+    }
+
+@enduml
