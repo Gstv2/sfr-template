@@ -8,6 +8,14 @@ export class Aluno {
     private InstanteNaMesa: number;
     private tempoComer: number;
 
+    constructor(tempoDigitarMatricula:number, tempoAtendimento:number, tempoComer:number){
+        this.tempoDigitarMatricula = tempoDigitarMatricula;
+        this.tempoAtendimento = tempoAtendimento;
+        this.tempoComer = tempoComer;
+
+    }
+
+
     // Métodos setters para definir os valores das propriedades
     public setInstanteFilaExterna(instante: number): void {
         this.InstanteFilaExterna = instante;
@@ -43,7 +51,11 @@ export class Aluno {
     }
 
     // Método para calcular o tempo médio considerando os tempos definidos
-    public calcularTempoMedio() {
+    public calcularTempoMedio():number {
+        if(!this.InstanteFilaExterna || !this.InstanteCatraca || !this.InstanteFilainterna || !this.InstanteAtendimento || !this.InstanteNaMesa){
+            throw new Error("Não é possivel calcular o tempo de espera de um aluno que não chegou ou não foi atendido ou .... ")
+        }
 
+        return this.InstanteFilaExterna - this.InstanteAtendimento;
     }
 }
