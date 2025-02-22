@@ -4,7 +4,7 @@ import { SimulationParameters } from "./Entities/simulation-parameters";
 
 export class SimulationRepositoryMock implements SimulationRepositoryI {
   async save(simulation: Simulation): Promise<void> {
-    // Simula sucesso sem armazenar
+
     if (!simulation.id) {
       simulation.id = "mock-id";
     }
@@ -12,12 +12,12 @@ export class SimulationRepositoryMock implements SimulationRepositoryI {
   }
 
   async getById(id: string): Promise<Simulation | null> {
-    // Retorna um objeto vazio para manter a interface
+    
     return Promise.resolve(new Simulation("mockid","mockname",new SimulationParameters(0,0,0,0,0,0,0,0,"normal")));
   }
 
   async getAll(): Promise<Simulation[]> {
-    // Retorna array vazio
+    
     return Promise.resolve([]);
   }
 

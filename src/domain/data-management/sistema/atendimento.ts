@@ -3,10 +3,12 @@ import { Aluno } from "./aluno";
 export class Atendimento{
     aluno: Aluno;
     ocupado: boolean;
+    bloqueado: boolean;
 
     constructor(aluno: Aluno, ocupado: boolean){
         this.aluno = aluno;
         this.ocupado = ocupado;
+        this.bloqueado = false;
 
     }
 
@@ -37,18 +39,13 @@ export class Atendimento{
         }    
     }
 
-    public verificarAtendimento(){
-        if(this.temAlguem()){
-            console.log("Atendimento está ocupado");
-        }else{
-            console.log("Atendimento está livre");
-        }
-    }
-
-    private travarAtendimento(): boolean{
-        while(this.ocupado == true){
-            console.log("Atendimento está ocupado");
+    public travarAtendimento(): boolean{
+        if (this.bloqueado == true){
+            this.bloqueado = false;
             return true;
+        }else{
+            this.bloqueado = true;
+            return false;
         }
     }
 
