@@ -1,4 +1,4 @@
-import { Mesa } from "Classe./Mesa";
+import { Mesa } from "./Mesa";
 
 class MesaRepository  {
     private mesas: Mesa[] = [];
