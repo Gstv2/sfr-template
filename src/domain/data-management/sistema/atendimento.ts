@@ -5,11 +5,10 @@ export class Atendimento{
     ocupado: boolean;
     bloqueado: boolean;
 
-    constructor(aluno: Aluno, ocupado: boolean){
+    constructor(aluno: Aluno, ocupado: boolean) {
         this.aluno = aluno;
         this.ocupado = ocupado;
         this.bloqueado = false;
-
     }
 
     public temAlguem(): boolean{
@@ -48,6 +47,8 @@ export class Atendimento{
             return false;
         }
     }
+
+   
 
 }
 
