@@ -1,0 +1,15 @@
+@startuml
+' Definição da classe MesaRepository
+class MesaRepository {
+  - mesas: Mesa[]
+  - limiteMesas: number
+  + MesaRepository(limiteMesas: number)
+  + adicionarMesa(mesa: Mesa): void
+  + removerMesa(id: number): void
+  + buscarMesa(id: number): Mesa | null
+  + listarMesas(): Mesa[]
+  + verificarMesasDisponiveis(): boolean
+  + liberarMesasAposTempo(tempo: number): void
+}
+
+@enduml
