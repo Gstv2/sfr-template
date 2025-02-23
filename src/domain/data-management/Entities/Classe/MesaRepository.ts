@@ -1,3 +1,5 @@
+import { Mesa } from "Classe./Mesa";
+
 class MesaRepository  {
     private mesas: Mesa[] = [];
     private limiteMesas: number;
