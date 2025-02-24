@@ -21,7 +21,7 @@ export class Refeitorio{
         this.salão = new RepositorioMesas();
     }
 
-    chegarAlunoFilaExterna(aluno:Aluno):Boolean{
+    chegarAlunoFilaExterna(aluno:Aluno):boolean{
         this.filaExterna.adicionarAluno(aluno);
         return true;
     }
@@ -32,7 +32,7 @@ export class Refeitorio{
         return aluno.getTempoDigitarMatricula();
     }
 
-    chegarAlunoFilaInterna(aluno:Aluno):Boolean{
+    chegarAlunoFilaInterna(aluno:Aluno):boolean{
         if(this.filaInterna.lotado()){
             return false;
         }
@@ -57,19 +57,19 @@ export class Refeitorio{
         return this.salão.removerAluno();
     }
 
-    filaExternaVazia():Boolean{
+    filaExternaVazia():boolean{
         return this.filaExterna.verificarSeTemAlguem() == 0;
     }
     
-    filaInternaVazia():Boolean{
+    filaInternaVazia():boolean{
         return this.filaInterna.verificarSeTemAlguem() == 0;
     }
 
-    catracaEstaDisponivel():Boolean{
+    catracaEstaDisponivel():boolean{
         return this.catraca.disponivel() == 0;
     }
 
-    atendimentoEstaDisponivel():Boolean{
+    atendimentoEstaDisponivel():boolean{
         return this.atendimento.disponivel() == 0;
     }
 }
