@@ -1,6 +1,6 @@
-import { FilaExterna } from './filaExterna'
+import { FilaExterna } from './FilaExterna'
 import { Catraca } from './catraca'
-import { FilaInterna } from './filaInterna'
+import { FilaInterna } from './FilaInterna'
 import { Atendimento } from './atendimento'
 import { RepositorioMesas } from './salão'
 import { Aluno } from './Aluno'
@@ -22,21 +22,22 @@ export class Refeitorio{
     }
 
     chegarAlunoFilaExterna(aluno:Aluno):boolean{
-        this.filaExterna.adicionarAluno(aluno);
+        this.filaExterna.AddAluno(aluno);
         return true;
     }
 
     moverAlunoParaCatraca():number{
-        const aluno:Aluno = this.filaExterna.removerAluno();
+        const aluno:Aluno = this.filaExterna.DelAluno();
         this.catraca.adicionarAluno(aluno);
         return aluno.getTempoDigitarMatricula();
     }
 
-    chegarAlunoFilaInterna(aluno:Aluno):boolean{
-        if(this.filaInterna.lotado()){
+    moverAlunoParaFilaInterna():boolean{
+        if(this.filaInterna.estaLotada()){
             return false;
         }
-
+        
+        const aluno:Aluno = this.catraca.removerAluno();
         this.filaInterna.adicionarAluno(aluno);
         return true;
     }
@@ -48,7 +49,7 @@ export class Refeitorio{
     }
 
     moverAlunoParaMesa():number{
-        const aluno:Aluno = this.filaExterna.removerAluno();
+        const aluno:Aluno = this.filaExterna.DelAluno();
         this.catraca.adicionarAluno(aluno);
         return aluno.getTempoDigitarMatricula();
     }
@@ -58,11 +59,11 @@ export class Refeitorio{
     }
 
     filaExternaVazia():boolean{
-        return this.filaExterna.verificarSeTemAlguem() == 0;
+        return this.filaExterna.tamanhoFilaExterna() == 0;
     }
     
     filaInternaVazia():boolean{
-        return this.filaInterna.verificarSeTemAlguem() == 0;
+        return this.filaInterna.tamanhoFilaInterna() == 0;
     }
 
     catracaEstaDisponivel():boolean{
@@ -71,5 +72,13 @@ export class Refeitorio{
 
     atendimentoEstaDisponivel():boolean{
         return this.atendimento.disponivel() == 0;
+    }
+
+    public tamanhoAtualFilaExterna(){
+        return this.filaExterna.tamanhoFilaExterna();
+    }
+
+    public tamanhoAtualFilaInterna(){
+        return this.filaInterna.tamanhoFilaInterna();
     }
 }

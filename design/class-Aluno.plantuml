@@ -57,19 +57,19 @@
         }
 
         class SimulationResults {
-            + intertalQueueSizeOverTime: MetricOverTime[];
-            + externalQueueSizeOverTime: MetricOverTime[];
-            + tableOccupancyOverTime: MetricOverTime[];
-            + averageWaitTime: number;
-            + avgExternalQueue: number;
-            + avgWaitTime: number;
-            + maxTableOccupancy: number;
-            + simulationDuration: number;
+            + intertalQueueSizeOverTime: MetricOverTime[]
+            + externalQueueSizeOverTime: MetricOverTime[]
+            + tableOccupancyOverTime: MetricOverTime[]
+            + averageWaitTime: number
+            + avgExternalQueue: number
+            + avgWaitTime: number
+            + maxTableOccupancy: number
+            + simulationDuration: number
         }
 
         class MetricOverTime {
-            + timestamp: number;
-            +value: number;
+            + timestamp: number
+            + value: number
         }
 
         class Simulation {

@@ -14,8 +14,6 @@ export class Aluno {
         this.tempoComer = tempoComer;
 
     }
-
-
     // Métodos setters para definir os valores das propriedades
     public setInstanteFilaExterna(instante: number): void {
         this.InstanteFilaExterna = instante;
