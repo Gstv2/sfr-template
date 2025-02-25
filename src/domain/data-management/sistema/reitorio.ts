@@ -1,33 +1,23 @@
 import { Aluno } from "./aluno";
 import { Atendimento } from "./atendimento";
+import { FilaInterna } from "./filaInterna";
 
 
 export class Refeitorio{
-    private QuantAtendimento:Atendimento[];
+    private filaInterna: FilaInterna;
+    private filaAtendimento: Atendimento;
 
-    constructor( QuantAtendimento:Atendimento[]){
-        this.QuantAtendimento = QuantAtendimento;
+    constructor(maxOcupacaoInterna: number, maxOcupacaoAtendimento: number) {
+        this.filaInterna = new FilaInterna(maxOcupacaoInterna);
+        this.filaAtendimento = new Atendimento(maxOcupacaoAtendimento);
     }
 
-
-   
-    
-    criarMesas(): void {
-
+    getFilaInterna(): FilaInterna {
+        return this.filaInterna;
     }
 
-    criarCatraca():void{
-
-    }
-
-    criarAtendimento(aluno: Aluno): boolean {
-       
-        return true; 
-    }
-
-    criarFilaInterna():boolean{
-        return true;
-
+    getFilaAtendimento(): Atendimento {
+        return this.filaAtendimento;
     }
 
 }

@@ -1,13 +1,12 @@
 import { Aluno } from "./aluno";
 
 export class Atendimento{
-    aluno: Aluno;
-    ocupado: boolean;
+    aluno: Aluno[] = [];
+    private maxOcupacao: number;
     bloqueado: boolean;
 
-    constructor(aluno: Aluno, ocupado: boolean) {
-        this.aluno = aluno;
-        this.ocupado = ocupado;
+    constructor(maxOcupacao: number) {
+        this.maxOcupacao = maxOcupacao;
         this.bloqueado = false;
     }
 
@@ -19,23 +18,20 @@ export class Atendimento{
         } 
     }
 
-    public adicionarAluno(aluno: Aluno): void{
-        if(this.temAlguem()){
-            throw new Error("Já tem alguém no atendimento");
-        }else{
-            console.log("Aluno está sendo antedido");
-            this.aluno = aluno;
+    public adicionarAluno(aluno: Aluno): void {
+        if (this.aluno.length < this.maxOcupacao) {
+            this.aluno.push(aluno);
+        } else {
+            throw new Error("Não pode adicionar aluno, pois a Fila de Atendimento está cheia.");
         }
     }
 
-    public removerAluno(): Aluno{
-        if(!this.temAlguem()){
-            throw new Error("Não tem ninguém no atendimento");
-        }else{
-            let aluno = this.aluno;
-            console.log("Aluno saiu do atendimento")
-            return aluno;
-        }    
+    public removerAluno(): Aluno {
+        if (this.aluno.length > 0) {
+            return this.aluno.shift()!;
+        } else {
+            throw new Error("Não pode remover, pois não tem nenhum aluno na Fila de Atendimento.");
+        }
     }
 
     public travarAtendimento(): boolean{

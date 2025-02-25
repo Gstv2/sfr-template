@@ -1,11 +1,9 @@
 import { Aluno } from "../sistema/aluno";
-import { Atendimento } from "../sistema/atendimento";
 import { MaquinaEventos } from "./maquinaEventos";
 import { Refeitorio } from "../sistema/reitorio";
-import { Evento } from "../eventos/evento";
+import { Evento } from "./evento";
 
-
-class ChamarAlunoAtendimento extends Evento {
+export class ChamarAlunoAtendimento extends Evento {
     private aluno: Aluno;
 
     constructor(timestamp: number, refeitorio: Refeitorio, maquina: MaquinaEventos, aluno: Aluno) {
@@ -14,15 +12,16 @@ class ChamarAlunoAtendimento extends Evento {
     }
 
     processarEvento(): void {
-        console.log(`Evento - ChegadaAlunoAtendimento - ${this.timestamp}`);
+        console.log(`Evento - ChamarAlunoAtendimento - ${this.timestamp}`);
 
-        const filaEstavaVazia = this.refeitorio.criarFilaInterna();
-        const sucesso = this.refeitorio.criarAtendimento(this.aluno);
-
-        if (sucesso && filaEstavaVazia) {
-            const agendamento1 = new Atendimento(this.timestamp, this.refeitorio, this.maquina); 
-            this.maquina
+        // Lógica para processar o evento
+        try {
+            const atendimento = this.refeitorio.getFilaAtendimento();
+            const alunoAtendido = atendimento.removerAluno();
+            console.log(`Aluno está sendo atendido.`);
+        } catch (error) {
+            console.log(`Erro ao remover aluno da fila de atendimento: ${error.message}`);
         }
     }
-}
 
+}

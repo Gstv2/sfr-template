@@ -16,6 +16,11 @@ export class MaquinaEventos{
     public adicionarEvento(evento: Evento): void{
         this.eventos.push(evento);
     }
+    
+    public agendarEvento(evento: Evento): void {
+        this.adicionarEvento(evento);
+        console.log(`Evento agendado: ${evento.constructor.name} para timestamp ${evento.getTimestamp()}`);
+    }
 
     private atualizarInstanteSimulacao(novoInstante: number): void{
         if(novoInstante < this.instanteSimulacao){
