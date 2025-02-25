@@ -10,9 +10,7 @@ export class MaquinaEventos{
 
     public processarEventos(){
         while(this.eventos.length>0){
-
-            if(this.refeitorio.get)
-
+            
             this.eventos = this.eventos.sort((e1,e2)=> e1.getTimestamp() - e2.getTimestamp())
             const e: Evento = this.eventos.shift()!;
             e.processarEvento();

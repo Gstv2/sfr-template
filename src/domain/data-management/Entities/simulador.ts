@@ -1,8 +1,9 @@
 import { ChegadaCarro } from "../eventos/ChegadaAluno";
 import { MaquinaEventos } from "../eventos/MaquinaEventos";
-import { ObservarTamanhoFila } from "../eventos/ObservarTamanhoFila";
-import { Aluno } from "../sistema/Aluno";
-import { Refeitorio } from "../sistema/Refeitorio";
+import { ObservarTamanhoFilaExterna } from "../Eventos/ObservarTamanhoFilaExterna";
+import { ObservarTamanhoFilaInterna } from "../Eventos/ObservarTamanhoFilaInterna";
+import { Aluno } from "../Sistema/Aluno";
+import { Refeitorio } from "../Sistema/Refeitorio";
 import { Simulation } from "./simulation";
 
 export class Simulador{
@@ -11,7 +12,7 @@ export class Simulador{
     private simulacao: Simulation;
 
     constructor(simulacao: Simulation){
-        this.simulacao = simulacao
+        this.simulacao = simulacao;
         this.refeitorio = new Refeitorio(this.simulacao.parameters.internalQueueLimit);
         this.maquina = new MaquinaEventos();
         this.confirgurarChegadasAluno();
@@ -24,8 +25,10 @@ export class Simulador{
 
         for(let i = 0;i<quantidadeObservacoes;i++){
             const instanteObservacao = i*intervaloEntreObservacoes;
-            const eventoObservacao = new ObservarTamanhoFila(instanteObservacao, this.refeitorio, this.maquina);
-            this.maquina.adicionarEvento(eventoObservacao);
+            const eventoObservacaoFilaExterna = new ObservarTamanhoFilaExterna(instanteObservacao, this.refeitorio, this.maquina);
+            const eventoObservacaoFilaInterna = new ObservarTamanhoFilaInterna(instanteObservacao, this.refeitorio, this.maquina);
+            this.maquina.adicionarEvento(eventoObservacaoFilaExterna);
+            this.maquina.adicionarEvento(eventoObservacaoFilaInterna);
         }
     }
 
@@ -38,7 +41,7 @@ export class Simulador{
             const aluno = new Aluno(tempoDeDigitarMatricula,tempoDeAtendimento,tempoDeComer);
 
             const instanteDeChegada = Math.random() * this.simulacao.parameters.serviceInterval;
-            const chegada = new ChegadaCarro(aluno, instanteDeChegada, this.refeitorio, this.maquina);
+            const chegadaAluno = new ChegadaAluno(aluno, instanteDeChegada, this.refeitorio, this.maquina);
 
             this.maquina.adicionarEvento(chegada);
         }
