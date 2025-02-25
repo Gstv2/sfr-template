@@ -1,15 +1,17 @@
+import { Simulador } from "../Entities/simulador";
 import { Evento } from "./Evento"
 import { Observador } from "./Observador";
 
 export class MaquinaEventos{
     private eventos: Evento[] = [];
     private instanteDeSimulacao: number = 0;
+    private simulador: Simulador;
     private observador: Observador = new Observador();
 
     public processarEventos(){
         while(this.eventos.length>0){
 
-            if()
+            if(this.refeitorio.get)
 
             this.eventos = this.eventos.sort((e1,e2)=> e1.getTimestamp() - e2.getTimestamp())
             const e: Evento = this.eventos.shift()!;

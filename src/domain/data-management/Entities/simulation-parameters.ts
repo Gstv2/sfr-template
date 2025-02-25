@@ -1,13 +1,14 @@
 export class SimulationParameters {
-  internalQueueLimit: number; // LFI
-  tableLimit: number; // LM
-  registrationTime: number; // TMDM
-  servingTime: number; // TMPSC
-  tableTime: number; // TMPNM
-  turnstileLimit: number; // QAL
-  studentCount: number; // QACR
-  serviceInterval: number; // IAR
-  arrivalDistribution: "normal" | "exp" | "uniform";
+  internalQueueLimit: number; // LFI (Limite da Fila Interna).
+  tableLimit: number; // LM (Limite de Mesas).
+  registrationTime: number; // TMDM (Tempo Médio para Digitar Matrícula).
+  servingTime: number; // TMPSC (Tempo Médio para Servir Comida).
+  tableTime: number; // TMPNM (Tempo Médio de Permanência na Mesa).
+  turnstileLimit: number; // QAL (Quantidade de Alunos para Liberar a Catraca).
+  studentCount: number; // QACR (Quantidade de Alunos que Chegam ao Refeitório).
+  serviceInterval: number; // IAR (Intervalo de Atendimento do Refeitório).
+  arrivalDistribution: "normal" | "exp" | "uniform"; //(normal, logarítmica, linear).
+
 
   constructor(
       internalQueueLimit: number,

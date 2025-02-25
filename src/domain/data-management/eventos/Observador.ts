@@ -1,20 +1,26 @@
 import { SimulationResults } from "../Entities/simulation-results"
 
 export class Observador{    
-    quantidadeDeCarrosAtendidos: number;
+    quantidadeAlunoAtendido: number;
     somatoriaTemposEspera: number;
+    ocupacaoMesas: number[];
     tamanhosFilaExterna:number[];
     tamanhosFilaInterna:number[];
 
     constructor(){
-        this.quantidadeDeCarrosAtendidos = 0;
+        this.quantidadeAlunoAtendido = 0;
+        this.ocupacaoMesas = [];
         this.somatoriaTemposEspera = 0;
         this.tamanhosFilaExterna = [];
         this.tamanhosFilaInterna = [];
     }
 
-    public observarAlunoAtendido(){
-        this.quantidadeDeCarrosAtendidos++;
+    public observarquantidadeAlunoAtendido(){
+        this.quantidadeAlunoAtendido++;
+    }
+    
+    public observarOcupacaoMesas(ocupacaoMesas:number){
+        this.ocupacaoMesas.push(ocupacaoMesas);
     }
 
     public observarTemposEspera(tempoEspera:number){
@@ -32,6 +38,7 @@ export class Observador{
     public computarResultados(): SimulationResults{
 
         const tempoMedioEspera = this.somatoriaTemposEspera / this.quantidadeDeCarrosAtendidos;
+        const ocupacaoMediaMesas = this.somatoriaTemposEspera / this.quantidadeDeCarrosAtendidos; 
         const tamanhoMedioFilaExterna = this.tamanhosFilaExterna.reduce((a,b)=>a+b) / this.tamanhosFilaExterna.length;
         const tamanhoMedioFilaInterna = this.tamanhosFilaInterna.reduce((a,b)=>a+b) / this.tamanhosFilaInterna.length;
 

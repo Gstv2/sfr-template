@@ -1,21 +1,21 @@
+import { ChamarAlunoDaFilaExternaParaCatraca } from "./ChamarAlunoDaFilaExternaParaCatraca";
 import { Evento } from "./Evento";
 
-export class ChegadaFilaInterna extends Evento{
+export class ChamarAlunoDaCatracaParaFilaInterna extends Evento{
     
     processarEvento(): void {
         console.log(`Evento - ChegadaAlunoFilaInterna - ${this.timestamp}`);
         
-        const filaEstavaVazia = this.refeitorio.catracaEstaDisponivel();
-        const sucesso = this.posto.chegadaCarro(this.carro);
-        this.carro.setinstanteDeChegada(this.timestamp);
+        const CatracaEstavaVazia = this.refeitorio.catracaEstaDisponivel();
+        const sucesso = this.refeitorio.moverAlunoParaFilaInterna();
 
-        if (sucesso && filaEstavaVazia && this.posto.estacaoEstaDisponivel()){
-            const agendamento1 = new ChamarCarroDaFilaParaAbastecimento(this.timestamp,this.posto,this.maquinaEventos);
+        if (sucesso && CatracaEstavaVazia && this.refeitorio.catracaEstaDisponivel()){
+            const agendamento1 = new ChamarAlunoDaFilaExternaParaCatraca(this.timestamp,this.refeitorio,this.maquinaEventos);
             this.maquinaEventos.adicionarEvento(agendamento1);
         }
 
         if(sucesso){
-            this.maquinaEventos.getObservador().observarCarroAtendido();
+            this.maquinaEventos.getObservador().observarquantidadeAlunoAtendido();
         }
     }
 }
