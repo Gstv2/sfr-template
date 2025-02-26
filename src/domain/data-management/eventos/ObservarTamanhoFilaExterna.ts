@@ -1,4 +1,4 @@
-import { Evento } from "./Evento";
+import { Evento } from "../Eventos/Evento";
 
 export class ObservarTamanhoFilaExterna extends Evento{
 

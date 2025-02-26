@@ -38,11 +38,11 @@ export class Observador{
     public computarResultados(): SimulationResults{
 
         const tempoMedioEspera = this.somatoriaTemposEspera / this.quantidadeAlunoAtendido;
-        const ocupacaoMediaMesas = this.somatoriaTemposEspera / this.quantidadeDeCarrosAtendidos; 
+        const ocupacaoMesas = this.ocupacaoMesas.reduce((a,b)=>a+b) / this.ocupacaoMesas.length;
         const tamanhoMedioFilaExterna = this.tamanhosFilaExterna.reduce((a,b)=>a+b) / this.tamanhosFilaExterna.length;
         const tamanhoMedioFilaInterna = this.tamanhosFilaInterna.reduce((a,b)=>a+b) / this.tamanhosFilaInterna.length;
 
-        return new SimulationResults(this.quantidadeDeCarrosAtendidos, tempoMedioEspera, tamanhoMedioFilaInterna, tamanhoMedioFilaExterna);
+        return new SimulationResults(tamanhoMedioFilaInterna, tamanhoMedioFilaExterna, ocupacaoMesas, tempoMedioEspera);
     }
 
 }

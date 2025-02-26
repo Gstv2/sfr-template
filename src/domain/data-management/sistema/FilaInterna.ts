@@ -2,14 +2,18 @@ import { Aluno } from "./Aluno";
 
 export class FilaInterna{
     private QuantAluno:Aluno[] = [];
-    private maxOcupação:number;
+    private maxOcupacao:number;
 
     constructor(maxOcupação:number){
-        this.maxOcupação = maxOcupação;
+        this.maxOcupacao = maxOcupação;
+    }
+
+    public getMaxocupacao(){
+        return this.maxOcupacao;
     }
 
     public adicionarAluno(aluno:Aluno):void{
-        if(this.QuantAluno.length == this.maxOcupação){
+        if(this.QuantAluno.length == this.maxOcupacao){
             throw new Error("não pode adicionar aluno, pois a Fila esta Cheia");
         }
 
@@ -25,7 +29,7 @@ export class FilaInterna{
     }
 
     public estaLotada():boolean{
-        return this.QuantAluno.length == this.maxOcupação;
+        return this.QuantAluno.length == this.maxOcupacao;
     }
 
     public tamanhoFilaInterna():number{

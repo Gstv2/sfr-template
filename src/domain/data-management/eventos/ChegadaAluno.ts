@@ -1,10 +1,10 @@
 import { Refeitorio } from "../Sistema/Refeitorio";
-import { MaquinaEventos } from "./MaquinaEventos";
+import { MaquinaEventos } from "../Eventos/MaquinaEventos";
 import { Aluno } from "../Sistema/Aluno";
-import { Evento } from "./Evento";
-import { ChamarAlunoDaFilaExternaParaCatraca } from "./ChamarAlunoDaFilaExternaParaCatraca";
+import { Evento } from "../Eventos/Evento";
+import { ChamarAlunoDaFilaExternaParaCatraca } from "../Eventos/ChamarAlunoDaFilaExternaParaCatraca";
 
-export class ChegadaFilaExterna extends Evento {
+export class ChegadaAluno extends Evento {
     private aluno : Aluno;
     constructor(aluno: Aluno, timestamp: number, refeitorio: Refeitorio, maquina: MaquinaEventos){
         super(timestamp, refeitorio, maquina);
@@ -12,6 +12,8 @@ export class ChegadaFilaExterna extends Evento {
     }
     
     processarEvento(): void {
+        console.log(`Evento - ChegadaAluno - ${this.timestamp}`)
+
         const sucesso = this.refeitorio.chegarAlunoFilaExterna(this.aluno);
         this.aluno.setInstanteFilaExterna(this.timestamp);
 

@@ -39,7 +39,7 @@ export class SimulationParameters {
       validatePositive(serviceInterval, 'serviceInterval (IAR)');
 
       // Validação da distribuição
-      if (!["normal", "log", "linear"].includes(arrivalDistribution)) {
+      if (!["normal", "exp", "linear"].includes(arrivalDistribution)) {
           throw new Error('Distribuição de chegada inválida');
       }
 

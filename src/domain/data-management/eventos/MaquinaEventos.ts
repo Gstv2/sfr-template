@@ -1,11 +1,9 @@
-import { Simulador } from "../Entities/simulador";
-import { Evento } from "./Evento"
-import { Observador } from "./Observador";
+import { Evento } from "../Eventos/Evento"
+import { Observador } from "../Eventos/Observador";
 
 export class MaquinaEventos{
     private eventos: Evento[] = [];
     private instanteDeSimulacao: number = 0;
-    private simulador: Simulador;
     private observador: Observador = new Observador();
 
     public processarEventos(){
