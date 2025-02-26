@@ -1,4 +1,5 @@
-import { ChegadaCarro } from "../eventos/ChegadaAluno";
+import { SimulatorI } from "@/adapter/interfaces/simulator-interface";
+import { ChegadaAluno } from "../eventos/ChegadaAluno";
 import { MaquinaEventos } from "../eventos/MaquinaEventos";
 import { ObservarTamanhoFilaExterna } from "../Eventos/ObservarTamanhoFilaExterna";
 import { ObservarTamanhoFilaInterna } from "../Eventos/ObservarTamanhoFilaInterna";
@@ -6,7 +7,7 @@ import { Aluno } from "../Sistema/Aluno";
 import { Refeitorio } from "../Sistema/Refeitorio";
 import { Simulation } from "./simulation";
 
-export class Simulador{
+export class Simulador implements SimulatorI{
     private refeitorio: Refeitorio;
     private maquina: MaquinaEventos;
     private simulacao: Simulation;
@@ -45,6 +46,14 @@ export class Simulador{
 
             this.maquina.adicionarEvento(chegada);
         }
+    }
+
+    startSimulation(simulation: Simulation, onProgressUpdate: (progress: number) => void, onError: (error: Error) => void): () => void {
+        console.log('simulação iniciada!')
+        this.maquina.processarEventos();
+        const resultados = this.maquina.getObservador().computarResultados();
+        this.simulacao.results = resultados;
+        console.log('simulação finalizada!')
     }
 
     public executarSimulacao():void{
