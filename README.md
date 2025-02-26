@@ -1,32 +1,41 @@
-**Use your preferred IDE**
+Simulador de Fluxo de Refeitório (SFR)
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+Descrição do Projeto
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+O Simulador de Fluxo de Refeitório (SFR) é um sistema que modela o fluxo de alunos em um refeitório universitário, permitindo a configuração de parâmetros operacionais e a análise estatística dos resultados. O objetivo principal é identificar gargalos, otimizar a eficiência e estimar o tempo médio de atendimento.
 
-Follow these steps:
+Funcionalidades Principais
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+Criar, editar e excluir simulações.
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+Configurar parâmetros como tempo de fila, tempo de atendimento e capacidade de mesas.
 
-# Step 3: Install the necessary dependencies.
-npm i
+Executar a simulação baseada em eventos discretos.
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
+Exibir resultados por meio de tabelas e gráficos.
 
-## What technologies are used for this project?
+Persistência de dados via localStorage (com opção de armazenamento em nuvem).
 
-This project is built with .
+Tecnologias Utilizadas
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+Frontend: React + TypeScript
 
+Estilização: Tailwind CSS
+
+Gráficos: Recharts
+
+Gerenciamento de Estado: Context API
+
+Persistência: localStorage e opção para armazenamento em nuvem
+
+Ferramentas: Git, GitHub, Trello/Jira para gestão de tarefas
+
+Arquitetura do Sistema
+
+O sistema segue uma arquitetura em três camadas:
+
+Camada de Apresentação (View): Interface do usuário e interações.
+
+Camada de Adaptação (Adapter): Transformar dados entre View e Domínio.
+
+Camada de Domínio (Domain): Regras de negócio, simulação e persistência.
