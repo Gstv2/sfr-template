@@ -1,6 +1,6 @@
-import { ChamarAlunoDaFilaExternaParaCatraca } from "./ChamarAlunoDaFilaExternaParaCatraca";
-import { DesbloquearCatraca } from "../Eventos/DesbloquearCatraca";
-import { Evento } from "./Evento";
+import { ChamarAlunoDaFilaExternaParaCatraca } from "../eventos/ChamarAlunoDaFilaExternaParaCatraca";
+import { DesbloquearCatraca } from "../eventos/DesbloquearCatraca";
+import { Evento } from "../eventos/Evento";
 
 export class ChamarAlunoDaCatracaParaFilaInterna extends Evento{
     

@@ -1,4 +1,4 @@
-import { Evento } from "../Eventos/Evento";
+import { Evento } from "../eventos/Evento";
 import { ChamarAlunoDaFilaExternaParaCatraca } from "./ChamarAlunoDaFilaExternaParaCatraca";
 
 export class DesbloquearCatraca extends Evento {
@@ -16,7 +16,7 @@ export class DesbloquearCatraca extends Evento {
             this.maquinaEventos.adicionarEvento(agendamento);
         }
         
-        if(this.timestamp >= this.simulador.getSimulacao.parameters.serviceInterval){
+        if(this.timestamp >= this.simulador.getSimulacao().parameters.serviceInterval){
             this.refeitorio.getCatraca().TravarCatraca();
         }
     }

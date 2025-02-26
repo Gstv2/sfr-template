@@ -1,9 +1,9 @@
-import { ChegadaAluno } from "../data-management/Eventos/ChegadaAluno";
-import { MaquinaEventos } from "../data-management/Eventos/MaquinaEventos";
-import { ObservarTamanhoFilaExterna } from "../data-management/Eventos/ObservarTamanhoFilaExterna";
-import { ObservarTamanhoFilaInterna } from "../data-management/Eventos/ObservarTamanhoFilaInterna";
-import { Aluno } from "../data-management/Sistema/Aluno";
-import { Refeitorio } from "../data-management/Sistema/Refeitorio";
+import { ChegadaAluno } from "../data-management/eventos/ChegadaAluno";
+import { MaquinaEventos } from "../data-management/eventos/MaquinaEventos";
+import { ObservarTamanhoFilaExterna } from "../data-management/eventos/ObservarTamanhoFilaExterna";
+import { ObservarTamanhoFilaInterna } from "../data-management/eventos/ObservarTamanhoFilaInterna";
+import { Aluno } from "../data-management/sistema/Aluno";
+import { Refeitorio } from "../data-management/sistema/Refeitorio";
 import { Simulation } from "../data-management/Entities/simulation";
 import { GaussianRandom, ExponentialRandom, UniformRandom } from "@/domain/simulation-engine/util/random-generators";
 import { SimulatorI } from "@/adapter/interfaces/simulator-interface";

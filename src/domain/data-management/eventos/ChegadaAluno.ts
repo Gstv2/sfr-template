@@ -1,8 +1,8 @@
-import { Refeitorio } from "../Sistema/Refeitorio";
-import { MaquinaEventos } from "../Eventos/MaquinaEventos";
+import { Refeitorio } from "../sistema/Refeitorio";
+import { MaquinaEventos } from "../eventos/MaquinaEventos";
 import { Aluno } from "../Sistema/Aluno";
-import { Evento } from "../Eventos/Evento";
-import { ChamarAlunoDaFilaExternaParaCatraca } from "../Eventos/ChamarAlunoDaFilaExternaParaCatraca";
+import { Evento } from "../eventos/Evento";
+import { ChamarAlunoDaFilaExternaParaCatraca } from "../eventos/ChamarAlunoDaFilaExternaParaCatraca";
 
 export class ChegadaAluno extends Evento {
     private aluno : Aluno;

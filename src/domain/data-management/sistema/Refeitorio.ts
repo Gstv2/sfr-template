@@ -1,10 +1,10 @@
-import { FilaExterna } from './FilaExterna'
-import { FilaInterna } from './FilaInterna'
-import { Atendimento } from './Atendimento'
-import { MesaRepository } from './RepositoryMesa'
+import { FilaExterna } from '../sistema/FilaExterna'
+import { FilaInterna } from '../sistema/FilaInterna'
+import { Atendimento } from '../sistema/Atendimento'
+import { MesaRepository } from '../sistema/RepositoryMesa'
 import { Aluno } from './Aluno'
-import { Mesa } from './Mesa'
-import { Catraca } from './Catraca'
+import { Mesa } from '../sistema/Mesa'
+import { Catraca } from '../sistema/Catraca'
 
 
 export class Refeitorio{

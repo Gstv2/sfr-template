@@ -1,5 +1,5 @@
 import { DesbloquearAtendimento } from "./DesbloquearAtendimento";
-import { Evento } from "./Evento";
+import { Evento } from "../eventos/Evento";
 
 export class ChamarAlunoDoaAtendimentoParaMesa extends Evento{
     processarEvento(): void {

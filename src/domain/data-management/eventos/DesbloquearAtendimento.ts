@@ -1,4 +1,4 @@
-import { Evento } from "../Eventos/Evento";
+import { Evento } from "../eventos/Evento";
 import { ChamarAlunoDaFilaInternaParaAtendimento } from "./ChamarAlunoDaFilaInternaParaAtendimento";
 
 export class DesbloquearAtendimento extends Evento {

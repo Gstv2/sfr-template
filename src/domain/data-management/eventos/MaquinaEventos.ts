@@ -1,5 +1,5 @@
-import { Evento } from "../Eventos/Evento"
-import { Observador } from "../Eventos/Observador";
+import { Evento } from "../eventos/Evento"
+import { Observador } from "../eventos/Observador";
 
 export class MaquinaEventos{
     private eventos: Evento[] = [];

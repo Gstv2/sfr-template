@@ -1,5 +1,5 @@
 import { ChamarAlunoDaCatracaParaFilaInterna } from "./ChamarAlunoDaCatracaParaFilaInterna";
-import { Evento } from "./Evento";
+import { Evento } from "../eventos/Evento";
 
 export class ChamarAlunoDaFilaInternaParaAtendimento extends Evento {
 

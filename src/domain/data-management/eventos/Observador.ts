@@ -38,7 +38,7 @@ export class Observador{
     public computarResultados(): SimulationResults{
 
         const tempoMedioEspera = this.somatoriaTemposEspera / this.quantidadeAlunoAtendido;
-        const ocupacaoMediaMesas = this.somatoriaTemposEspera / this.quantidadeDeCarrosAtendidos; 
+        const ocupacaoMediaMesas = this.somatoriaTemposEspera / this.quantidadeAlunoAtendido; 
         const tamanhoMedioFilaExterna = this.tamanhosFilaExterna.reduce((a,b)=>a+b) / this.tamanhosFilaExterna.length;
         const tamanhoMedioFilaInterna = this.tamanhosFilaInterna.reduce((a,b)=>a+b) / this.tamanhosFilaInterna.length;
 

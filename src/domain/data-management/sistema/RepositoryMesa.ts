@@ -1,4 +1,4 @@
-import { Mesa } from "./Mesa";
+import { Mesa } from "../sistema/Mesa";
 
 
 export class MesaRepository  {

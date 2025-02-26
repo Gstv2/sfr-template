@@ -1,6 +1,6 @@
 
-import { ChamarAlunoDaCatracaParaFilaInterna } from "../Eventos/ChamarAlunoDaCatracaParaFilaInterna";
-import { Evento } from "../Eventos/Evento";
+import { ChamarAlunoDaCatracaParaFilaInterna } from "../eventos/ChamarAlunoDaCatracaParaFilaInterna";
+import { Evento } from "../eventos/Evento";
 
 export class ChamarAlunoDaFilaExternaParaCatraca extends Evento{
 
@@ -13,7 +13,7 @@ export class ChamarAlunoDaFilaExternaParaCatraca extends Evento{
         const agendamento = new ChamarAlunoDaCatracaParaFilaInterna(instantefinalizacao,this.refeitorio,this.maquinaEventos);
         this.maquinaEventos.adicionarEvento(agendamento);
 
-        if(this.timestamp >= this.simulador.getSimulacao.parameters.serviceInterval){
+        if(this.timestamp >= this.simulador.getSimulacao().parameters.serviceInterval){
             this.refeitorio.getCatraca().TravarCatraca();
         }
     }

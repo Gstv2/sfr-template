@@ -1,11 +1,11 @@
-import { Simulador } from "../../simulation-engine/simulador";
-import { MaquinaEventos } from "../Eventos/MaquinaEventos"
-import { Refeitorio } from "../Sistema/Refeitorio"
+import { Simulator } from "../../simulation-engine/simulador";
+import { MaquinaEventos } from "../eventos/MaquinaEventos"
+import { Refeitorio } from "../sistema/Refeitorio"
 
 export abstract class Evento{
     protected timestamp: number;
     protected refeitorio: Refeitorio;
-    protected simulador: Simulador;
+    protected simulador: Simulator;
     protected maquinaEventos: MaquinaEventos;
 
     constructor(timestamp:number, refeitorio:Refeitorio, maquinaEventos: MaquinaEventos){
