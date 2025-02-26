@@ -1,47 +1,35 @@
 import { Aluno } from './Aluno.ts'; // Import da classe Aluno
 
 export class Catraca {
-    private id_catraca: number;
     private aluno: Aluno | undefined;
-    private ocupada: boolean;
-    private travada: boolean; 
-
-    constructor(id: number) {
-        this.id_catraca = id;
-        this.aluno = undefined;
-        this.ocupada = false;
-        this.travada = false; 
-    }
+    private travada: boolean = false; 
 
     public AddAluno(aluno: Aluno): void {
         if (this.travada) {
             throw new Error("Catraca travada! Aguarde liberação.");
         }
 
-        if (this.ocupada) {
+        if (this.aluno) {
             throw new Error("Catraca ocupada! Aguarde a liberação antes de adicionar um novo aluno.");
         }
 
         this.aluno = aluno;
-        this.ocupada = true;
         console.log(`Aluno com ID ${aluno} entrou na catraca.`);
     }
 
     public DelAluno(): Aluno | undefined {
-        if (!this.ocupada) {
+        if (!this.aluno){
             throw new Error("Nenhum aluno presente na catraca.");
         }
 
         const alunoRemovido = this.aluno;
         this.aluno = undefined;
-        this.ocupada = false;
-
         console.log(`Aluno com ID ${alunoRemovido} saiu da catraca.`);
         return alunoRemovido;
     }
 
-    public verificarOcupado(): boolean {
-        return this.ocupada;
+    public estaDiponivel():boolean{
+        return !this.aluno;
     }
 
     public TravarCatraca(): void {

@@ -1,9 +1,10 @@
 import { FilaExterna } from './FilaExterna'
-import { Catraca } from './catraca'
 import { FilaInterna } from './FilaInterna'
-import { Atendimento } from './atendimento'
-import { RepositorioMesas } from './salão'
+import { Atendimento } from './Atendimento'
+import { MesaRepository } from './RepositoryMesa'
 import { Aluno } from './Aluno'
+import { Mesa } from './Mesa'
+import { Catraca } from './Catraca'
 
 
 export class Refeitorio{
@@ -11,14 +12,24 @@ export class Refeitorio{
     private catraca: Catraca;
     private filaInterna: FilaInterna;
     private atendimento: Atendimento;
-    private salão: RepositorioMesas;
+    private salão: MesaRepository;
 
-    constructor(tamanhoFila:number){
+    constructor(tamanhoFila:number, limiteMesas:number){
         this.filaExterna = new FilaExterna();
         this.catraca = new Catraca();
         this.filaInterna = new FilaInterna(tamanhoFila);
         this.atendimento = new Atendimento();
-        this.salão = new RepositorioMesas();
+        this.salão = new MesaRepository(limiteMesas);
+    }
+
+    public getFilaInterna(){
+        return this.filaInterna;
+    }
+    public getRepositorioMesas(){
+        return this.salão;
+    }
+    public getCatraca(){
+        return this.catraca;
     }
 
     chegarAlunoFilaExterna(aluno:Aluno):boolean{
@@ -27,8 +38,12 @@ export class Refeitorio{
     }
 
     moverAlunoParaCatraca():number{
+        if(this.filaInterna.estaLotada()){
+            this.catraca.TravarCatraca();
+            
+        }
         const aluno:Aluno = this.filaExterna.DelAluno();
-        this.catraca.adicionarAluno(aluno);
+        this.catraca.AddAluno(aluno);
         return aluno.getTempoDigitarMatricula();
     }
 
@@ -37,7 +52,7 @@ export class Refeitorio{
             return false;
         }
         
-        const aluno:Aluno = this.catraca.removerAluno();
+        const aluno:Aluno = this.catraca.DelAluno();
         this.filaInterna.adicionarAluno(aluno);
         return true;
     }
@@ -49,13 +64,31 @@ export class Refeitorio{
     }
 
     moverAlunoParaMesa():number{
+        const mesa: Mesa = this.salão.buscarMesaDisponivel();
         const aluno:Aluno = this.filaExterna.DelAluno();
-        this.catraca.adicionarAluno(aluno);
+        mesa.addAluno(aluno);
         return aluno.getTempoDigitarMatricula();
     }
 
-    finalizarAtendimento():Aluno{
-        return this.salão.removerAluno();
+    desbloquearCatraca():boolean{
+        if(!this.catraca.verificarTravada()){
+            throw new Error('Não pode destrava uma catraca que não esta travada');
+        }
+
+        this.catraca.LiberarCatraca();
+        return true;
+    }
+    desbloquearAtendimento():boolean{
+        if(!this.atendimento.getBloqueado()){
+            throw new Error('Não pode destrava um atendimento que não esta bloqueado');
+        }
+        this.atendimento.desbloquerAtendimento();
+        return true;
+
+    }
+
+    finalizarAtendimento(tempo):void{
+        return this.getRepositorioMesas().liberarMesasAposTempo(tempo);
     }
 
     filaExternaVazia():boolean{
@@ -67,11 +100,11 @@ export class Refeitorio{
     }
 
     catracaEstaDisponivel():boolean{
-        return this.catraca.disponivel() == 0;
+        return this.catraca.estaDiponivel();
     }
 
     atendimentoEstaDisponivel():boolean{
-        return this.atendimento.disponivel() == 0;
+        return this.atendimento.estaDiponivel();
     }
 
     public tamanhoAtualFilaExterna(){

@@ -1,13 +1,13 @@
 import { SimulationRepositoryI } from "@/adapter/interfaces/simulation-repository-interface";
 import { Simulation } from "@/domain/data-management/Entities/simulation";
 import { SimulationParameters } from "@/domain/data-management/Entities/simulation-parameters";
-import { SimulationRepositoryMock } from "@/domain/data-management/simulation-repository";
+import { SimulationRepository } from "@/domain/data-management/simulation-repository";
 
 describe("SimulationRepository", () => {
   let repository: SimulationRepositoryI;
 
   beforeEach(() => {
-    repository = new SimulationRepositoryMock();
+    repository = new SimulationRepository();
     localStorage.clear();
   });
 
